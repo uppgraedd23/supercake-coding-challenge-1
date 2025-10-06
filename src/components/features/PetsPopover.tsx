@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Button } from "../ui/Button";
-import { ChevronDownIcon } from "../ui/icons";
+import { ChevronDownIcon, getPetIcon } from "../ui/icons";
 
 type Species = "dog" | "cat" | "bird" | "hamster" | "rat";
 
@@ -121,6 +121,7 @@ export function PetsPopover({
             </Button>
             {SPECIES_OPTIONS.map((option) => {
               const isSelected = selectedSpecies.includes(option.value);
+              const Icon = getPetIcon(option.value);
               return (
                 <Button
                   key={option.value}
@@ -130,6 +131,7 @@ export function PetsPopover({
                     isSelected ? "!bg-primary !text-white !border-primary" : ""
                   }
                 >
+                  <Icon className="inline-block mr-1.5" />
                   {option.label}
                 </Button>
               );

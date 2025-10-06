@@ -1,4 +1,5 @@
 import { Customer } from "@/types/customer";
+import { getPetIcon } from "../ui/icons";
 
 interface CustomerCardProps {
   customer: Customer;
@@ -21,14 +22,18 @@ export function CustomerCard({ customer }: CustomerCardProps) {
 
           {customer.pets.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mt-3">
-              {customer.pets.map((pet) => (
-                <span
-                  key={pet.id}
-                  className="inline-flex items-center px-2.5 py-1 bg-white border border-border rounded-full text-xs text-text"
-                >
-                  {pet.name} ({pet.species})
-                </span>
-              ))}
+              {customer.pets.map((pet) => {
+                const Icon = getPetIcon(pet.species);
+                return (
+                  <span
+                    key={pet.id}
+                    className="inline-flex items-center px-2.5 py-1 bg-white border border-border rounded-full text-xs text-text"
+                  >
+                    <Icon className="inline-block mr-1" />
+                    {pet.name} ({pet.species})
+                  </span>
+                );
+              })}
             </div>
           )}
 
