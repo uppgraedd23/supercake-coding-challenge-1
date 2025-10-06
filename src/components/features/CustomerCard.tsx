@@ -6,7 +6,7 @@ interface CustomerCardProps {
 
 export function CustomerCard({ customer }: CustomerCardProps) {
   return (
-    <div className="bg-card border border-border rounded-lg p-4 hover:shadow-card transition-shadow">
+    <div className="bg-card p-4">
       <div className="flex items-start gap-3">
         <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-lg flex-shrink-0">
           {customer.name.charAt(0).toUpperCase()}

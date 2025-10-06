@@ -13,7 +13,7 @@ export function Input({ icon, className = "", ...props }: InputProps) {
         </div>
       )}
       <input
-        className={`w-full bg-white border border-border rounded-input px-4 py-2.5 text-sm text-text placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors ${
+        className={`w-full h-10 bg-white border border-border rounded-lg px-4 text-sm text-text placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors ${
           icon ? "pl-11" : ""
         } ${className}`}
         {...props}

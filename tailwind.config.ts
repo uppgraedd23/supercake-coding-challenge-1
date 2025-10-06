@@ -30,6 +30,7 @@ export default {
         background: {
           DEFAULT: "#FFFFFF",
           secondary: "#F8FAFC",
+          active: "#E8EBF0",
         },
       },
       borderRadius: {
