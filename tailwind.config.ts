@@ -19,6 +19,9 @@ export default {
           secondary: "#64748B",
           tertiary: "#94A3B8",
         },
+        icon: {
+          DEFAULT: "#848A93",
+        },
         card: {
           DEFAULT: "#F5F7FA",
         },

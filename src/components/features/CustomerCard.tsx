@@ -19,10 +19,9 @@ export function CustomerCard({ customer, view }: CustomerCardProps) {
               customer.pets.map((pet) => (
                 <span
                   key={pet.id}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-border rounded-full text-xs whitespace-nowrap"
-                  style={{ color: pet.color }}
+                  className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-border rounded-full text-xs text-text-secondary"
                 >
-                  {getPetIcon(pet.species, pet.color)}
+                  {getPetIcon(pet.species, '#848A93')}
                   {pet.name} ({pet.species})
                 </span>
               ))
@@ -48,10 +47,9 @@ export function CustomerCard({ customer, view }: CustomerCardProps) {
             {customer.pets.map((pet) => (
               <span
                 key={pet.id}
-                className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-border rounded-full text-xs whitespace-nowrap"
-                style={{ color: pet.color }}
+                className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-border rounded-full text-xs whitespace-nowrap text-text-secondary"
               >
-                {getPetIcon(pet.species, pet.color)}
+                {getPetIcon(pet.species, '#848A93')}
                 {pet.name} ({pet.species})
               </span>
             ))}
