@@ -25,10 +25,8 @@ export default function Home() {
             Customers and Pets
           </h1>
 
-          <div className="flex gap-4 items-start">
-            <div className="flex-1">
-              <SearchBar value={searchText} onChange={setSearchText} />
-            </div>
+          <div className="flex gap-4 items-center">
+            <SearchBar value={searchText} onChange={setSearchText} />
             <PetsPopover
               selectedSpecies={selectedSpecies}
               onSpeciesChange={setSelectedSpecies}
@@ -73,7 +71,7 @@ export default function Home() {
               }
             >
               {customers.map((customer) => (
-                <CustomerCard key={customer.id} customer={customer} />
+                <CustomerCard key={customer.id} customer={customer} view={view} />
               ))}
             </div>
           </>
