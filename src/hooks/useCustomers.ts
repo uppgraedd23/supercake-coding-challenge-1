@@ -1,10 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Customer } from "@/types/customer";
+
+const DEBOUNCE_DELAY = 300;
 
 export function useCustomers(searchText: string, species: string[]) {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Memoize species string to prevent unnecessary re-fetches
+  const speciesStr = useMemo(() => species.join(","), [species]);
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -16,8 +21,8 @@ export function useCustomers(searchText: string, species: string[]) {
         if (searchText) {
           params.append("searchText", searchText);
         }
-        if (species.length > 0) {
-          params.append("species", species.join(","));
+        if (speciesStr) {
+          params.append("species", speciesStr);
         }
 
         const response = await fetch(`/api/customers?${params.toString()}`);
@@ -35,9 +40,9 @@ export function useCustomers(searchText: string, species: string[]) {
     };
 
     // Debounce search
-    const timer = setTimeout(fetchCustomers, 300);
+    const timer = setTimeout(fetchCustomers, DEBOUNCE_DELAY);
     return () => clearTimeout(timer);
-  }, [searchText, species]);
+  }, [searchText, speciesStr]);
 
   return { customers, loading, error };
 }

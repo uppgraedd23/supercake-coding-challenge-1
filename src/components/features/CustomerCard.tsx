@@ -1,5 +1,6 @@
 import { Customer } from "@/types/customer";
 import { getPetIcon } from "../ui/icons";
+import { colors } from "@/lib/colors";
 
 interface CustomerCardProps {
   customer: Customer;
@@ -21,7 +22,7 @@ export function CustomerCard({ customer, view }: CustomerCardProps) {
                   key={pet.id}
                   className="inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-border rounded-full text-xs text-text-secondary"
                 >
-                  {getPetIcon(pet.species, '#848A93')}
+                  {getPetIcon(pet.species, colors.icon.default)}
                   {pet.name} ({pet.species})
                 </span>
               ))

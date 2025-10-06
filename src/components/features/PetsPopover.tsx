@@ -3,21 +3,22 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Button } from "../ui/Button";
 import { ChevronDownIcon, getPetIcon } from "../ui/icons";
+import { colors } from "@/lib/colors";
 
-type Species = "dog" | "cat" | "bird" | "hamster" | "rat";
+import { Species } from "@/types/customer";
 
 interface PetsPopoverProps {
   selectedSpecies: Species[];
   onSpeciesChange: (species: Species[]) => void;
 }
 
-const SPECIES_OPTIONS: { value: Species; label: string }[] = [
+const SPECIES_OPTIONS: readonly { value: Species; label: string }[] = [
   { value: "dog", label: "Dogs" },
   { value: "cat", label: "Cats" },
   { value: "bird", label: "Birds" },
   { value: "hamster", label: "Hamsters" },
   { value: "rat", label: "Rats" },
-];
+] as const;
 
 const ANIMATION_DURATION = 300;
 
@@ -132,7 +133,7 @@ export function PetsPopover({
                 className="relative inline-flex items-center gap-1 px-2.5 py-1 bg-white border border-border rounded-full text-xs text-text hover:bg-background-secondary transition-colors cursor-pointer"
               >
                 <span className="inline-block">
-                  {getPetIcon(species, '#848A93')}
+                  {getPetIcon(species, colors.icon.default)}
                 </span>
                 {option?.label}
                 <span
@@ -171,7 +172,7 @@ export function PetsPopover({
             {SPECIES_OPTIONS.map((option) => {
               const isSelected = tempSelectedSpecies.includes(option.value);
               const isHovered = hoveredSpecies === option.value;
-              const iconColor = (isSelected || isHovered) ? '#FFFFFF' : '#848A93';
+              const iconColor = (isSelected || isHovered) ? colors.icon.white : colors.icon.default;
               return (
                 <Button
                   key={option.value}
