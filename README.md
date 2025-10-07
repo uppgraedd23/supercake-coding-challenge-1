@@ -1,4 +1,4 @@
-# Supercake Coding Challenge
+# Supercake Coding Challenge Viktor Shvets
 
 A customer and pet management interface built with Next.js 15, TypeScript, and Tailwind CSS.
 
