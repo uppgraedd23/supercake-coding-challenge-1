@@ -8,11 +8,10 @@ export function ViewToggle({ view, onViewChange }: ViewToggleProps) {
     <div className="inline-flex bg-white border border-border rounded-lg p-1">
       <button
         onClick={() => onViewChange("grid")}
-        className={`px-3 py-1.5 text-sm rounded transition-colors ${
-          view === "grid"
+        className={`flex items-center justify-center px-3 py-1.5 text-sm rounded transition-colors ${view === "grid"
             ? "bg-primary text-white"
             : "text-text hover:bg-background-secondary"
-        }`}
+          }`}
       >
         <svg
           width="16"
@@ -21,19 +20,50 @@ export function ViewToggle({ view, onViewChange }: ViewToggleProps) {
           fill="none"
           className="inline-block"
         >
-          <rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+          <rect
+            x="1"
+            y="1"
+            width="6"
+            height="6"
+            rx="1"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <rect
+            x="9"
+            y="1"
+            width="6"
+            height="6"
+            rx="1"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <rect
+            x="1"
+            y="9"
+            width="6"
+            height="6"
+            rx="1"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <rect
+            x="9"
+            y="9"
+            width="6"
+            height="6"
+            rx="1"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
         </svg>
       </button>
       <button
         onClick={() => onViewChange("list")}
-        className={`px-3 py-1.5 text-sm rounded transition-colors ${
-          view === "list"
+        className={`flex items-center justify-center px-3 py-1.5 text-sm rounded transition-colors ${view === "list"
             ? "bg-primary text-white"
             : "text-text hover:bg-background-secondary"
-        }`}
+          }`}
       >
         <svg
           width="16"
@@ -42,9 +72,33 @@ export function ViewToggle({ view, onViewChange }: ViewToggleProps) {
           fill="none"
           className="inline-block"
         >
-          <rect x="1" y="2" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="1" y="7" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
-          <rect x="1" y="12" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.5" />
+          <rect
+            x="1"
+            y="2"
+            width="14"
+            height="3"
+            rx="1"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <rect
+            x="1"
+            y="7"
+            width="14"
+            height="3"
+            rx="1"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <rect
+            x="1"
+            y="12"
+            width="14"
+            height="3"
+            rx="1"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
         </svg>
       </button>
     </div>

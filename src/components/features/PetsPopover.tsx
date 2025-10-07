@@ -30,7 +30,8 @@ export function PetsPopover({
   const [isClosing, setIsClosing] = useState(false);
   const [hoveredSpecies, setHoveredSpecies] = useState<Species | null>(null);
   const [hoveredBadge, setHoveredBadge] = useState<Species | null>(null);
-  const [tempSelectedSpecies, setTempSelectedSpecies] = useState<Species[]>(selectedSpecies);
+  const [tempSelectedSpecies, setTempSelectedSpecies] =
+    useState<Species[]>(selectedSpecies);
   const popoverRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -69,6 +70,8 @@ export function PetsPopover({
 
   const resetFilters = () => {
     setTempSelectedSpecies([]);
+    onSpeciesChange([]);
+    closePopover();
   };
 
   const removeBadgeSpecies = (species: Species) => {
@@ -108,10 +111,11 @@ export function PetsPopover({
       <button
         ref={buttonRef}
         onClick={togglePopover}
-        className={`inline-flex items-center justify-between gap-2 w-[122px] h-10 px-4 border rounded-popover text-sm text-text transition-colors focus:outline-none ${isOpen
-          ? "bg-background-active border-border"
-          : "bg-white border-border hover:bg-background-secondary"
-          }`}
+        className={`inline-flex items-center justify-between gap-2 w-[122px] h-10 px-4 border rounded-popover text-sm text-text transition-colors focus:outline-none ${
+          isOpen
+            ? "bg-background-active border-border"
+            : "bg-white border-border hover:bg-background-secondary"
+        }`}
       >
         Pets
         <ChevronDownIcon
@@ -122,7 +126,7 @@ export function PetsPopover({
       {selectedSpecies.length > 0 && (
         <div className="flex gap-1.5">
           {selectedSpecies.map((species) => {
-            const option = SPECIES_OPTIONS.find(opt => opt.value === species);
+            const option = SPECIES_OPTIONS.find((opt) => opt.value === species);
             const isHovered = hoveredBadge === species;
             return (
               <button
@@ -138,11 +142,23 @@ export function PetsPopover({
                 {option?.label}
                 <span
                   className={`absolute -top-1.5 -right-1.5 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center transition-all duration-200 ${
-                    isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+                    isHovered ? "opacity-100 scale-100" : "opacity-0 scale-0"
                   }`}
                 >
-                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 2L2 6M2 2L6 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <svg
+                    width="8"
+                    height="8"
+                    viewBox="0 0 8 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 2L2 6M2 2L6 6"
+                      stroke="white"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </span>
               </button>
@@ -154,7 +170,7 @@ export function PetsPopover({
       {(isOpen || isClosing) && (
         <div
           ref={popoverRef}
-          className="absolute top-full right-0 mt-2 w-[344px] bg-white border border-border rounded-popover shadow-popover p-4 z-50"
+          className="absolute top-full left-0 sm:right-0 sm:left-auto mt-2 w-[calc(100vw-2rem)] sm:w-[344px] max-w-[344px] bg-white border border-border rounded-popover shadow-popover p-4 z-50"
           style={{
             animation: isClosing
               ? `popoverOut ${ANIMATION_DURATION}ms ease-in forwards`
@@ -172,7 +188,10 @@ export function PetsPopover({
             {SPECIES_OPTIONS.map((option) => {
               const isSelected = tempSelectedSpecies.includes(option.value);
               const isHovered = hoveredSpecies === option.value;
-              const iconColor = (isSelected || isHovered) ? colors.icon.white : colors.icon.default;
+              const iconColor =
+                isSelected || isHovered
+                  ? colors.icon.white
+                  : colors.icon.default;
               return (
                 <Button
                   key={option.value}
@@ -201,7 +220,9 @@ export function PetsPopover({
             >
               Reset
             </Button>
-            <Button onClick={applyFilters} className="flex-1">Apply Filters</Button>
+            <Button onClick={applyFilters} className="flex-1">
+              Apply Filters
+            </Button>
           </div>
         </div>
       )}

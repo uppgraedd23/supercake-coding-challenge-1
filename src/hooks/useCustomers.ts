@@ -1,14 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import { Customer } from "@/types/customer";
-
-const DEBOUNCE_DELAY = 300;
+import { useDebounce } from "./useDebounce";
 
 export function useCustomers(searchText: string, species: string[]) {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Memoize species string to prevent unnecessary re-fetches
+  const debouncedSearchText = useDebounce(searchText, 300);
   const speciesStr = useMemo(() => species.join(","), [species]);
 
   useEffect(() => {
@@ -18,8 +17,8 @@ export function useCustomers(searchText: string, species: string[]) {
 
       try {
         const params = new URLSearchParams();
-        if (searchText) {
-          params.append("searchText", searchText);
+        if (debouncedSearchText) {
+          params.append("searchText", debouncedSearchText);
         }
         if (speciesStr) {
           params.append("species", speciesStr);
@@ -39,10 +38,8 @@ export function useCustomers(searchText: string, species: string[]) {
       }
     };
 
-    // Debounce search
-    const timer = setTimeout(fetchCustomers, DEBOUNCE_DELAY);
-    return () => clearTimeout(timer);
-  }, [searchText, speciesStr]);
+    fetchCustomers();
+  }, [debouncedSearchText, speciesStr]);
 
   return { customers, loading, error };
 }

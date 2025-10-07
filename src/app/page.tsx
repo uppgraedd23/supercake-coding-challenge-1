@@ -14,7 +14,10 @@ export default function Home() {
   const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);
   const [view, setView] = useState<"grid" | "list">("grid");
 
-  const { customers, loading, error } = useCustomers(searchText, selectedSpecies);
+  const { customers, loading, error } = useCustomers(
+    searchText,
+    selectedSpecies,
+  );
 
   return (
     <div className="min-h-screen bg-white py-8">
@@ -25,7 +28,7 @@ export default function Home() {
             Customers and Pets
           </h1>
 
-          <div className="flex gap-4 items-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
             <SearchBar value={searchText} onChange={setSearchText} />
             <PetsPopover
               selectedSpecies={selectedSpecies}
@@ -57,9 +60,10 @@ export default function Home() {
 
         {!loading && !error && customers.length > 0 && (
           <>
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 sm:gap-0 mb-4">
               <p className="text-sm text-text-secondary">
-                {customers.length} {customers.length === 1 ? "customer" : "customers"} found
+                {customers.length}{" "}
+                {customers.length === 1 ? "customer" : "customers"} found
               </p>
               <ViewToggle view={view} onViewChange={setView} />
             </div>
@@ -71,7 +75,11 @@ export default function Home() {
               }
             >
               {customers.map((customer) => (
-                <CustomerCard key={customer.id} customer={customer} view={view} />
+                <CustomerCard
+                  key={customer.id}
+                  customer={customer}
+                  view={view}
+                />
               ))}
             </div>
           </>

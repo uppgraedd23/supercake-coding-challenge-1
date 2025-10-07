@@ -21,7 +21,7 @@ export function SearchBar({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       type="text"
-      className="!w-[312px] !h-10"
+      className="!w-full sm:!w-[312px] !h-10"
     />
   );
 }
