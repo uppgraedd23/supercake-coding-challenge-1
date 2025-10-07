@@ -1,18 +1,5 @@
+import { Customer } from "@/types/customer";
 import data from "./customers.json";
-
-type Pet = {
-  id: string;
-  name: string;
-  species: string;
-};
-
-type Customer = {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  pets: Pet[];
-};
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
